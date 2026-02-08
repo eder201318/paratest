@@ -167,6 +167,44 @@
         }
         .btn-add-cart-large:active { transform: scale(0.97); }
 
+        /* --- MENU LATERAL (SIDEBAR MOBILE) --- */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: var(--sidebar-width);
+            height: 100dvh;
+            background: #fff;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+        }
+        #sidebar.open { left: 0; }
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .sidebar-link {
+            text-decoration: none;
+            color: #000;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 15px 10px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .sidebar-link:hover { background: #f9f9f9; }
+
         /* --- CARRINHO --- */
         #cart-drawer { 
             position: fixed; top: 0; right: -100%; width: 100%; max-width: var(--cart-width); 
@@ -179,7 +217,7 @@
         .cart-item { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #f9f9f9; padding-bottom: 15px; align-items: center; position: relative; }
         .cart-item img { width: 70px; height: 95px; object-fit: cover; border-radius: 4px; }
         
-        /* --- NOVO DESIGN BOTÕES QUANTIDADE --- */
+        /* --- DESIGN BOTÕES QUANTIDADE --- */
         .qty-controls-modern {
             display: flex;
             align-items: center;
@@ -206,13 +244,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: all 0.2s ease;
         }
-        .qty-btn-modern:hover {
-            background: #000;
-            color: #fff;
-        }
-        .qty-btn-modern:active {
-            transform: scale(0.9);
-        }
+        .qty-btn-modern:hover { background: #000; color: #fff; }
         .qty-val-modern {
             font-size: 0.85rem;
             font-weight: 800;
@@ -246,8 +278,19 @@
 </head>
 <body>
 
-<!-- Overlay para fechar menus -->
+<!-- Overlay de fundo -->
 <div class="overlay" id="overlay" onclick="window.closeAllMenus()"></div>
+
+<!-- Menu Lateral Mobile (Hamburguer) -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <span style="font-weight:900; letter-spacing: 1px; font-size: 1.1rem;">MENU</span>
+        <button style="border:none; background:none; font-size:1.5rem; cursor:pointer;" onclick="window.closeAllMenus()">✕</button>
+    </div>
+    <div class="sidebar-link" onclick="window.goToHome()">Início</div>
+    <div class="sidebar-link" onclick="window.showCategory('fitness')">Fitness</div>
+    <div class="sidebar-link" onclick="window.showCategory('casual')">Moda Íntima</div>
+</nav>
 
 <!-- Modal de Sucesso -->
 <div id="confirm-modal">
@@ -486,7 +529,6 @@
         document.getElementById('confirm-modal').style.display = 'flex';
     };
 
-    // --- ATUALIZAÇÃO DO CARRINHO COM NOVO DESIGN DE BOTÕES ---
     window.updateCartUI = () => {
         const container = document.getElementById('cart-items-container');
         let total = 0;
@@ -508,7 +550,6 @@
                     <div style="font-size:0.7rem; color:#888; margin-top:2px;">Tam: ${item.size} | Cor: ${item.color}</div>
                     <div style="font-weight:900; margin-top:4px; font-size:0.95rem;">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
                     
-                    <!-- DESIGN MODERNIZADO DE CONTROLE DE QUANTIDADE -->
                     <div class="qty-controls-modern">
                         <button class="qty-btn-modern" onclick="window.changeQty(${item.cartId}, -1)">−</button>
                         <span class="qty-val-modern">${item.quantity}</span>
@@ -566,7 +607,25 @@
         window.closeAllMenus();
     };
 
-    // --- AUXILIARES UI ---
+    // --- FUNÇÕES DE INTERFACE (HAMBURGUER CORRIGIDO) ---
+    window.openSidebar = () => { 
+        document.getElementById('sidebar').classList.add('open'); 
+        document.querySelector('.overlay').classList.add('active'); 
+    };
+
+    window.toggleCart = () => { 
+        document.getElementById('cart-drawer').classList.toggle('open'); 
+        document.querySelector('.overlay').classList.toggle('active'); 
+    };
+
+    window.closeAllMenus = () => {
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('cart-drawer').classList.remove('open');
+        document.querySelector('.overlay').classList.remove('active');
+        document.getElementById('confirm-modal').style.display = 'none';
+    };
+
+    // --- AUXILIARES ---
     function hideAllViews() { 
         document.getElementById('home-view').style.display = 'none'; 
         document.getElementById('category-view').style.display = 'none'; 
@@ -576,16 +635,10 @@
         document.querySelectorAll('.nav-link-item').forEach(l => l.classList.remove('active'));
         document.getElementById('link-'+id)?.classList.add('active');
     }
-    window.openSidebar = () => { document.querySelector('.overlay').classList.add('active'); };
-    window.toggleCart = () => { document.getElementById('cart-drawer').classList.toggle('open'); document.querySelector('.overlay').classList.toggle('active'); };
-    window.closeAllMenus = () => {
-        document.getElementById('cart-drawer').classList.remove('open');
-        document.querySelector('.overlay').classList.remove('active');
-        document.getElementById('confirm-modal').style.display = 'none';
-    };
     window.closeConfirmModal = () => document.getElementById('confirm-modal').style.display = 'none';
     window.confirmGoToCart = () => { window.closeConfirmModal(); window.toggleCart(); };
     window.zoom = (src) => { document.getElementById('full-image').src = src; document.getElementById('image-viewer').style.display = 'flex'; };
+    
     function showToast(m) {
         const t = document.getElementById('toast');
         t.innerText = m; t.classList.add('visible');
