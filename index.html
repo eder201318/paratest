@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>JOY STORE | Official Store</title>
-    
-    <!-- Fonte Inter para um design limpo e profissional -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
     <style>
-        /* --- VARIÁVEIS GLOBAIS DE DESIGN --- */
+        /* --- VARIÁVEIS --- */
         :root {
             --accent-color: #000;
             --white: #ffffff;
@@ -17,15 +15,17 @@
             --text-main: #1a1a1a;
             --sidebar-width: 280px;
             --cart-width: 380px;
-            --success-color: #25D366; /* Verde WhatsApp */
+            --success-color: #25D366;
             --error-color: #ff4d4d;
             --border-radius: 6px;
             --site-max-width: 1250px;
         }
 
-        /* --- RESET BÁSICO --- */
+        /* --- RESET GLOBAL --- */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
         html, body { height: 100%; width: 100%; }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--white);
@@ -45,7 +45,7 @@
         }
         .error-shake { animation: shake 0.3s ease-in-out 2; border: 1.5px solid var(--error-color) !important; }
 
-        /* --- CABEÇALHO (HEADER) --- */
+        /* --- CABEÇALHO --- */
         header {
             background: #fff;
             padding-top: 15px;
@@ -55,6 +55,7 @@
             z-index: 1001;
             width: 100%;
         }
+
         .header-top {
             display: flex;
             justify-content: center;
@@ -64,6 +65,7 @@
             padding: 0 40px 10px;
             min-height: 50px;
         }
+
         .menu-trigger {
             display: none; 
             position: absolute;
@@ -76,6 +78,7 @@
             z-index: 1020;
         }
         .menu-trigger span { display: block; width: 24px; height: 2px; background: #000; }
+
         header h1 {
             font-size: 1.8rem;
             letter-spacing: 10px;
@@ -84,6 +87,7 @@
             cursor: pointer;
             margin: 0;
         }
+
         .cart-trigger {
             position: absolute;
             right: 30px;
@@ -101,33 +105,36 @@
             display: flex; align-items: center; justify-content: center; font-weight: 900;
         }
 
-        /* --- NAVEGAÇÃO DESKTOP --- */
-        .nav-bar { display: flex; padding: 10px 30px 15px; text-align: center; justify-content: center; }
-        .nav-links-center { display: flex; gap: 40px; justify-content: center; width: 100%; }
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            padding: 10px 30px 15px;
+        }
+        .nav-links-center { display: flex; gap: 40px; }
         .nav-link-item {
             text-decoration: none; color: #000; font-size: 0.8rem;
             font-weight: 800; text-transform: uppercase; padding-bottom: 5px;
             border-bottom: 3px solid transparent; transition: 0.2s;
-            cursor: pointer;
         }
         .nav-link-item.active { border-bottom-color: #000; }
 
-        /* --- ÁREAS DE CONTEÚDO --- */
+        /* --- CONTENTOR PRINCIPAL --- */
         main { flex: 1; width: 100%; position: relative; z-index: 1; }
 
-        /* --- HOME E CARROSSEL --- */
+        /* --- HOME --- */
         .home-carousel { width: 100%; height: 80vh; position: relative; overflow: hidden; background: #000; }
         .carousel-track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
         .carousel-slide { min-width: 100%; height: 100%; }
         .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }
 
-        /* --- VITRINE DE PRODUTOS --- */
+        /* --- VITRINE CENTRALIZADA --- */
         #category-view { display: none; padding: 50px 0; max-width: var(--site-max-width); margin: 0 auto; }
         .category-header { width: 100%; text-align: center; margin-bottom: 50px; }
         .category-header h2 { 
             font-size: 1.4rem; font-weight: 900; text-transform: uppercase; letter-spacing: 4px;
             display: inline-block; border-bottom: 4px solid #000; padding: 0 15px 8px;
         }
+
         .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 0 30px; }
         .product-card-vitrine { display: flex; flex-direction: column; cursor: pointer; }
         .vitrine-img-box { aspect-ratio: 2/3; background: #f9f9f9; overflow: hidden; border-radius: 4px; }
@@ -136,74 +143,71 @@
         .vitrine-name { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: #333; margin-bottom: 8px; height: 2.8em; overflow: hidden; }
         .vitrine-price { font-size: 1.1rem; font-weight: 900; color: #000; }
 
-        /* --- PÁGINA DE DETALHES --- */
+        /* --- DETALHES --- */
         #product-detail-view { display: none; padding: 40px 30px; max-width: 1200px; margin: 0 auto; }
         .breadcrumb { font-size: 0.75rem; color: #999; margin-bottom: 30px; text-transform: uppercase; cursor: pointer; font-weight: 700; }
         .detail-layout { display: flex; flex-direction: row; gap: 60px; align-items: flex-start; }
+        
         .detail-left { flex: 1.1; max-width: 500px; position: relative; }
         .detail-main-img-container { 
-            width: 100%; aspect-ratio: 2/3.2; background: #f9f9f9; border-radius: 12px; 
-            overflow: hidden; position: relative;
+            width: 100%; 
+            max-height: 70vh; 
+            aspect-ratio: 2/3.2; 
+            background: #f9f9f9; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            position: relative;
+            touch-action: pan-y;
         }
         .detail-carousel-track { display: flex; height: 100%; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
         .detail-carousel-track img { min-width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
+        
+        .pagination-dots {
+            position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px; z-index: 10;
+        }
+        .dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .dot.active { background: #000; width: 20px; border-radius: 10px; }
 
         .detail-right { flex: 0.9; display: flex; flex-direction: column; }
         .detail-title { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; }
         .detail-price { font-size: 2.2rem; font-weight: 900; margin-bottom: 35px; border-top: 2px solid #eee; padding-top: 20px; }
-        
         .option-label { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; display: block; }
-        .size-grid, .color-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 35px; }
-        .size-btn { border: 2px solid #ddd; padding: 12px; min-width: 60px; text-align: center; cursor: pointer; font-weight: 800; border-radius: 4px; font-size: 1rem; }
+        .size-grid, .color-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 35px; padding: 5px; border: 1.5px solid transparent; border-radius: 4px; }
+        .size-btn { border: 2px solid #ddd; padding: 12px; min-width: 60px; text-align: center; cursor: pointer; font-weight: 800; border-radius: 4px; font-size: 1rem; transition: 0.2s; }
         .size-btn.active { background: #000; color: #fff; border-color: #000; }
-        .color-circle { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid #ddd; cursor: pointer; transition: 0.2s; }
+        .color-circle { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid #ddd; cursor: pointer; }
         .color-circle.active { border: 2.5px solid #000; outline: 1.5px solid #000; outline-offset: 4px; }
 
-        /* BOTÃO ADICIONAR */
+        /* Botão Desktop (Alinhado à Esquerda por padrão) */
         .btn-add-cart-large { 
-            background: #000; color: #fff; border: none; padding: 22px; width: 100%; max-width: 320px; 
-            margin-top: 10px; font-weight: 900; text-transform: uppercase; border-radius: 4px; 
-            cursor: pointer; font-size: 1rem; transition: transform 0.2s;
+            background: #000; 
+            color: #fff; 
+            border: none; 
+            padding: 22px; 
+            width: 100%; 
+            max-width: 320px; 
+            margin: 10px 0 0; /* Alinhado à esquerda no PC */
+            font-weight: 900; 
+            text-transform: uppercase; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 1rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            transition: transform 0.2s;
         }
         .btn-add-cart-large:active { transform: scale(0.97); }
 
-        /* --- MENU LATERAL (SIDEBAR MOBILE) --- */
-        #sidebar {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: var(--sidebar-width);
-            height: 100dvh;
-            background: #fff;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            padding: 30px 20px;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
-        }
-        #sidebar.open { left: 0; }
-        .sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-        .sidebar-link {
-            text-decoration: none;
-            color: #000;
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 15px 10px;
-            border-radius: 4px;
-            margin-bottom: 5px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .sidebar-link:hover { background: #f9f9f9; }
+        /* --- RODAPÉ --- */
+        footer { background: #000; color: #fff; padding: 80px 30px 50px; margin-top: 0; width: 100%; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .footer-section h4 { text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 25px; font-weight: 900; }
+        .footer-section p, .footer-links li { font-size: 0.85rem; line-height: 1.8; color: #bbb; }
+        .footer-links li { margin-bottom: 12px; cursor: pointer; }
+        .footer-bottom { max-width: 1200px; margin: 60px auto 0; padding-top: 30px; border-top: 1px solid #222; text-align: center; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; opacity: 0.5; }
 
         /* --- CARRINHO --- */
         #cart-drawer { 
@@ -212,64 +216,91 @@
             display: flex; flex-direction: column; transition: 0.4s; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
         }
         #cart-drawer.open { right: 0; }
-        .cart-header { padding: 25px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .cart-header { padding: 25px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+        .cart-header h3 { font-size: 1.1rem; font-weight: 900; }
+        
         .cart-items { flex: 1; overflow-y: auto; padding: 20px; }
-        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #f9f9f9; padding-bottom: 15px; align-items: center; position: relative; }
+        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #f9f9f9; padding-bottom: 15px; align-items: center; }
         .cart-item img { width: 70px; height: 95px; object-fit: cover; border-radius: 4px; }
         
-        /* --- DESIGN BOTÕES QUANTIDADE --- */
-        .qty-controls-modern {
-            display: flex;
-            align-items: center;
-            background: #f8f8f8;
-            border-radius: 50px;
-            padding: 4px;
-            width: fit-content;
-            margin-top: 10px;
-            border: 1px solid #eee;
-        }
-        .qty-btn-modern {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: none;
-            background: #fff;
-            color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 700;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: all 0.2s ease;
-        }
-        .qty-btn-modern:hover { background: #000; color: #fff; }
-        .qty-val-modern {
-            font-size: 0.85rem;
-            font-weight: 800;
-            min-width: 35px;
-            text-align: center;
-            color: #000;
-        }
+        .qty-controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+        .qty-btn { background: #f0f0f0; border: none; width: 26px; height: 26px; border-radius: 4px; cursor: pointer; font-weight: 900; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
+        .qty-val { font-size: 0.9rem; font-weight: 700; min-width: 20px; text-align: center; }
 
-        .cart-footer { padding: 25px 20px; border-top: 1px solid #eee; background: #fff; }
-        .btn-checkout { background: var(--success-color); color: #fff; border: none; width: 100%; padding: 20px; font-weight: 900; text-transform: uppercase; cursor: pointer; border-radius: 4px; font-size: 1rem; }
+        .cart-footer { 
+            flex-shrink: 0; padding: 25px 20px; border-top: 1px solid #eee; background: #fff;
+            padding-bottom: calc(40px + env(safe-area-inset-bottom)); 
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.03);
+        }
+        .btn-checkout { background: var(--success-color); color: #fff; border: none; width: 100%; padding: 20px; font-weight: 900; text-transform: uppercase; cursor: pointer; border-radius: 4px; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
-        /* --- MODAIS --- */
-        #confirm-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 5000; display: none; align-items: center; justify-content: center; }
-        .confirm-box { background: #fff; padding: 30px; border-radius: 12px; max-width: 380px; width: 90%; text-align: center; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1500; display: none; }
+        /* --- MODAL CONFIRMAÇÃO --- */
+        #confirm-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); z-index: 5000; display: none;
+            align-items: center; justify-content: center;
+        }
+        .confirm-box {
+            background: #fff; padding: 30px; border-radius: 12px; max-width: 380px; width: 90%;
+            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            animation: modalPop 0.3s ease-out;
+        }
+        @keyframes modalPop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .confirm-box h4 { font-weight: 900; font-size: 1.2rem; margin-bottom: 15px; text-transform: uppercase; }
+        .confirm-box p { font-size: 0.9rem; color: #666; margin-bottom: 25px; }
+        .confirm-btns { display: flex; flex-direction: column; gap: 10px; }
+        .btn-confirm-go { background: #000; color: #fff; border: none; padding: 16px; border-radius: 6px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
+        .btn-confirm-stay { background: #f4f4f4; color: #000; border: none; padding: 16px; border-radius: 6px; font-weight: 700; cursor: pointer; text-transform: uppercase; font-size: 0.85rem; }
+
+        /* --- GAVETAS --- */
+        nav#sidebar { position: fixed; top: 0; left: -100%; width: var(--sidebar-width); height: 100vh; background: #fff; z-index: 2000; display: flex; flex-direction: column; padding: 40px 25px; transition: 0.4s; }
+        nav#sidebar.open { left: 0; }
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .close-sidebar-btn { background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; padding: 10px 15px; cursor: pointer; font-size: 1.1rem; font-weight: 900; }
+        .sidebar-link { text-decoration: none; color: #000; font-size: 1rem; font-weight: 700; text-transform: uppercase; padding: 15px; margin-bottom: 8px; border-radius: 4px; display: block; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1500; display: none; opacity: 1; transition: 0.3s; }
         .overlay.active { display: block; }
-        #toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #000; color: #fff; padding: 15px 30px; border-radius: 50px; z-index: 9999; transition: 0.4s; }
+
+        #toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #000; color: #fff; padding: 15px 30px; border-radius: 50px; z-index: 9999; font-size: 0.9rem; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: bottom 0.4s ease; }
         #toast.visible { bottom: 30px; }
 
-        /* --- RESPONSIVIDADE --- */
+        /* --- AJUSTES MOBILE (AQUI O BOTÃO É CENTRALIZADO) --- */
         @media (max-width: 767px) {
+            footer { display: none !important; }
+            .home-carousel { height: calc(100dvh - 70px); }
             .menu-trigger { display: flex; left: 20px; }
             .nav-bar { display: none; }
+            header h1 { font-size: 1.4rem; letter-spacing: 6px; }
+            .header-top { padding: 0 20px 5px; min-height: 50px; }
+            .cart-trigger { right: 20px; }
+            
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 15px; }
-            .btn-add-cart-large { max-width: 90%; margin: 30px auto 0; }
+
+            /* Detalhe Ultra Compacto */
+            #product-detail-view { padding: 15px; }
+            .detail-layout { flex-direction: column; gap: 15px; }
+            .detail-left { max-width: 100%; }
+            .detail-main-img-container { aspect-ratio: 1/1.1; border-radius: 4px; max-height: none; }
+            
+            .detail-title { font-size: 1.15rem; margin-bottom: 5px; }
+            .detail-price { font-size: 1.5rem; margin-bottom: 20px; padding-top: 10px; border-top-width: 1px; }
+            
+            .option-label { font-size: 0.65rem; margin-bottom: 8px; }
+            .size-grid, .color-grid { gap: 6px; margin-bottom: 15px; }
+            .size-btn { padding: 10px; min-width: 45px; font-size: 0.85rem; border-width: 1.5px; }
+            .color-circle { width: 30px; height: 30px; border-width: 1.5px; }
+            
+            /* CENTRALIZAÇÃO EXCLUSIVA PARA MOBILE */
+            .btn-add-cart-large { 
+                padding: 18px; 
+                font-size: 0.95rem; 
+                border-radius: 4px; 
+                max-width: 90%; 
+                margin: 30px auto 0; /* Centraliza com margens auto */
+                margin-left: 50px;
+                align-self: center; /* Centraliza no flexbox vertical */
+            }
         }
 
         #image-viewer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 4000; display: none; align-items: center; justify-content: center; }
@@ -278,28 +309,16 @@
 </head>
 <body>
 
-<!-- Overlay de fundo -->
 <div class="overlay" id="overlay" onclick="window.closeAllMenus()"></div>
 
-<!-- Menu Lateral Mobile (Hamburguer) -->
-<nav id="sidebar">
-    <div class="sidebar-header">
-        <span style="font-weight:900; letter-spacing: 1px; font-size: 1.1rem;">MENU</span>
-        <button style="border:none; background:none; font-size:1.5rem; cursor:pointer;" onclick="window.closeAllMenus()">✕</button>
-    </div>
-    <div class="sidebar-link" onclick="window.goToHome()">Início</div>
-    <div class="sidebar-link" onclick="window.showCategory('fitness')">Fitness</div>
-    <div class="sidebar-link" onclick="window.showCategory('casual')">Moda Íntima</div>
-</nav>
-
-<!-- Modal de Sucesso -->
+<!-- MODAL DE CONFIRMAÇÃO -->
 <div id="confirm-modal">
     <div class="confirm-box">
-        <h4 style="font-weight:900;">Item Adicionado!</h4>
-        <p style="margin: 15px 0; color: #666;">Deseja finalizar ou continuar?</p>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-            <button onclick="window.confirmGoToCart()" style="background:#000; color:#fff; border:none; padding:16px; border-radius:6px; font-weight:800; cursor:pointer; text-transform:uppercase;">Ir para o Carrinho</button>
-            <button onclick="window.closeConfirmModal()" style="background:#f4f4f4; color:#000; border:none; padding:16px; border-radius:6px; font-weight:700; cursor:pointer; text-transform:uppercase;">Continuar Comprando</button>
+        <h4>Item Adicionado!</h4>
+        <p>O que deseja fazer agora?</p>
+        <div class="confirm-btns">
+            <button class="btn-confirm-go" onclick="window.confirmGoToCart()">Ir para o Carrinho</button>
+            <button class="btn-confirm-stay" onclick="window.closeConfirmModal()">Continuar Comprando</button>
         </div>
     </div>
 </div>
@@ -330,6 +349,25 @@
     </div>
 </header>
 
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <span style="font-weight:900; letter-spacing: 1px; font-size: 1.1rem;">NAVEGAÇÃO</span>
+        <button class="close-sidebar-btn" onclick="window.closeAllMenus()">✕</button>
+    </div>
+    <div class="sidebar-link active" onclick="window.goToHome()">Início</div>
+    <div class="sidebar-link" onclick="window.showCategory('fitness')">Fitness</div>
+    <div class="sidebar-link" onclick="window.showCategory('casual')">Moda Íntima</div>
+</nav>
+
+<aside id="cart-drawer">
+    <div class="cart-header"><h3 style="font-size:1.1rem; font-weight:900;">CARRINHO</h3><button class="icon-btn" onclick="window.toggleCart()" style="background:none; border:none; font-size:1.8rem; cursor:pointer;">✕</button></div>
+    <div class="cart-items" id="cart-items-container"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:900; font-size: 1.3rem;"><span>TOTAL:</span><span id="cart-total-value">R$ 0,00</span></div>
+        <button class="btn-checkout" onclick="window.checkoutWhatsApp()">Finalizar via WhatsApp</button>
+    </div>
+</aside>
+
 <main>
     <div id="home-view">
         <div class="home-carousel">
@@ -347,33 +385,39 @@
     <div id="product-detail-view"></div>
 </main>
 
-<aside id="cart-drawer">
-    <div class="cart-header"><h3 style="font-weight:900;">CARRINHO</h3><button style="background:none; border:none; font-size:1.5rem; cursor:pointer;" onclick="window.toggleCart()">✕</button></div>
-    <div class="cart-items" id="cart-items-container"></div>
-    <div class="cart-footer">
-        <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:900; font-size: 1.3rem;"><span>TOTAL:</span><span id="cart-total-value">R$ 0,00</span></div>
-        <button class="btn-checkout" onclick="window.checkoutWhatsApp()">Finalizar via WhatsApp</button>
+<footer>
+    <div class="footer-content">
+        <div class="footer-section"><h4>JOY STORE</h4><p>Sua loja oficial de moda fitness e casual. Qualidade, estilo e performance em cada peça única.</p></div>
+        <div class="footer-section"><h4>NAVEGAÇÃO</h4><ul class="footer-links"><li onclick="window.goToHome()">Início</li><li onclick="window.showCategory('fitness')">Moda Fitness</li><li onclick="window.showCategory('casual')">Moda Íntima</li></ul></div>
+        <div class="footer-section"><h4>AJUDA</h4><ul class="footer-links"><li>Trocas</li><li>Tamanhos</li></ul></div>
+        <div class="footer-section"><h4>CONTACTO</h4><ul class="footer-links"><li>(91) 99999-9999</li><li>contato@joystore.com.br</li></ul></div>
     </div>
-</aside>
-
-<footer style="background:#000; color:#fff; padding: 40px 20px; text-align:center;">
-    <p style="font-weight:900; letter-spacing: 2px;">JOY STORE</p>
-    <p style="font-size: 0.75rem; color:#666; margin-top: 10px;">© 2026 JOY STORE OFFICIAL. TODOS OS DIREITOS RESERVADOS.</p>
+    <div class="footer-bottom"><p>© 2026 JOY STORE. TODOS OS DIREITOS RESERVADOS.</p></div>
 </footer>
 
 <div id="toast">Feedback</div>
 
 <script>
-    // --- ESTADO GLOBAL ---
-    let cart = [];
-    let activeProduct = null;
-    let activeVariation = null;
-    let selectedSize = null;
-    let selectedColorName = null;
-    let currentTotalPrice = 0;
-    let toastTimeout = null;
+    // --- LIGAÇÃO GLOBAL DE FUNÇÕES ---
+    window.openSidebar = function() { document.getElementById('sidebar').classList.add('open'); document.getElementById('overlay').classList.add('active'); };
+    window.closeAllMenus = function() { 
+        document.getElementById('sidebar').classList.remove('open'); 
+        document.getElementById('cart-drawer').classList.remove('open'); 
+        document.getElementById('overlay').classList.remove('active'); 
+        window.closeConfirmModal();
+    };
+    window.toggleCart = function() { document.getElementById('cart-drawer').classList.toggle('open'); document.getElementById('overlay').classList.toggle('active'); };
+    window.goToHome = function(push = true) { window.closeAllMenus(); hideAllViews(); document.getElementById('home-view').style.display = 'block'; updateNavLinks('home'); if (push) window.location.hash = 'home'; window.scrollTo(0,0); };
+    window.showCategory = function(cat, push = true) { window.closeAllMenus(); hideAllViews(); document.getElementById('category-view').style.display = 'block'; document.getElementById('cat-title-display').innerText = cat === 'casual' ? 'Moda Íntima' : cat.toUpperCase(); updateNavLinks(cat); renderCategoryGrid(cat); if (push) window.location.hash = 'category-' + cat; window.scrollTo(0,0); };
+    window.openDetail = function(id, push = true) { window.closeAllMenus(); activeProduct = products.find(p => p.id === id); if(!activeProduct) return window.goToHome(); selectedSize = null; selectedColor = null; hideAllViews(); const detailView = document.getElementById('product-detail-view'); detailView.style.display = 'block'; if (push) window.location.hash = 'product-' + id; window.scrollTo(0,0); renderDetailView(); };
+    window.setSize = function(size, el) { selectedSize = size; document.getElementById('size-container')?.classList.remove('error-shake'); el.parentElement.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active')); el.classList.add('active'); };
+    window.zoom = function(src) { document.getElementById('full-image').src = src; document.getElementById('image-viewer').style.display = 'flex'; };
 
-    // --- PRODUTOS ---
+    // --- MODAL CONFIRMAÇÃO ---
+    window.closeConfirmModal = () => { document.getElementById('confirm-modal').style.display = 'none'; };
+    window.confirmGoToCart = () => { window.closeConfirmModal(); window.toggleCart(); };
+
+    // --- DADOS ---
     const products = [
         { 
             id: 'fit1', 
@@ -382,7 +426,7 @@
             priceNumeric: 89.90,
             variations: [
                 { color: 'Preto', hex: '#000', images: ['https://github.com/eder201318/fotos/blob/main/IMG-20260206-WA0053.jpg?raw=true', 'https://github.com/eder201318/fotos/blob/main/IMG-20260206-WA0054.jpg?raw=true'], sizes: ['P', 'M'] },
-                { color: 'Bronze', hex: '#8b7355', images: ['https://github.com/eder201318/fotos/blob/main/IMG-20260206-WA0058.jpg?raw=true'], sizes: ['P', 'M', 'G'] }
+                { color: 'Bronze', hex: '#8b7355', images: ['https://github.com/eder201318/fotos/blob/main/IMG-20260206-WA0058.jpg?raw=true', 'https://github.com/eder201318/fotos/blob/main/IMG-20260206-WA0054.jpg?raw=true'], sizes: ['P', 'M', 'G'] }
             ]
         },
         { 
@@ -391,275 +435,253 @@
             name: 'Legging High Power', 
             priceNumeric: 129.90,
             variations: [
-                { color: 'Preto', hex: '#000', images: ['https://github.com/eder201318/fotos/blob/main/IMG-20260206-WA0057.jpg?raw=true'], sizes: ['P', 'M', 'G'] },
-                { color: 'Azul', hex: '#1a2a6c', images: ['https://github.com/eder201318/fotos/blob/main/IMG-20260206-WA0060.jpg?raw=true'], sizes: ['M', 'G', 'GG'] }
+                { color: 'Azul', hex: '#1a2a6c', images: ['https://github.com/eder201318/fotos/blob/main/IMG-20260206-WA0060.jpg?raw=true'], sizes: ['M', 'G', 'GG'] },
+                { color: 'Preto', hex: '#000', images: ['https://github.com/eder201318/fotos/blob/main/IMG-20260206-WA0057.jpg?raw=true'], sizes: ['P', 'M', 'G'] }
+            ]
+        },
+        { 
+            id: 'sh2', 
+            category: 'casual', 
+            name: 'Conjunto Intimate Mix Pro', 
+            priceNumeric: 149.90,
+            variations: [
+                { color: 'Branco', hex: '#fff', images: ['https://images.unsplash.com/photo-1594235412407-95d85d30403e?w=1000'], sizes: ['P', 'M', 'G'] }
             ]
         }
     ];
 
-    // --- NAVEGAÇÃO ---
-    window.goToHome = (push = true) => {
-        window.closeAllMenus();
-        hideAllViews();
-        document.getElementById('home-view').style.display = 'block';
-        updateNavLinks('home');
-        if (push) window.location.hash = 'home';
-        window.scrollTo(0,0);
+    let cart = [];
+    let activeProduct = null;
+    let activeVariation = null;
+    let selectedSize = null;
+    let selectedColor = null;
+    let currentTotalPrice = 0;
+    let toastTimeout = null;
+
+    function hideAllViews() { document.getElementById('home-view').style.display = 'none'; document.getElementById('category-view').style.display = 'none'; document.getElementById('product-detail-view').style.display = 'none'; }
+    function updateNavLinks(activeId) { document.querySelectorAll('.nav-link-item').forEach(link => link.classList.remove('active')); const active = document.getElementById('link-' + activeId); if(active) active.classList.add('active'); }
+
+    // --- CARROSSEL DE DETALHES ---
+    let detailImgIndex = 0;
+    let touchStartX = 0;
+
+    window.moveDetailCarousel = (index) => {
+        const track = document.querySelector('.detail-carousel-track');
+        if(!track) return;
+        detailImgIndex = index;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        document.querySelectorAll('.pagination-dots .dot').forEach((d, i) => {
+            d.classList.toggle('active', i === index);
+        });
     };
 
-    window.showCategory = (cat, push = true) => {
-        window.closeAllMenus();
-        hideAllViews();
-        document.getElementById('category-view').style.display = 'block';
-        document.getElementById('cat-title-display').innerText = cat === 'casual' ? 'Moda Íntima' : cat.toUpperCase();
-        renderCategoryGrid(cat);
-        updateNavLinks(cat);
-        if (push) window.location.hash = 'category-' + cat;
-        window.scrollTo(0,0);
-    };
+    function handleSwipe() {
+        const detailContainer = document.querySelector('.detail-main-img-container');
+        if (!detailContainer) return;
+        detailContainer.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        detailContainer.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const diffX = touchStartX - touchEndX;
+            const threshold = 50; 
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) { if (detailImgIndex < activeVariation.images.length - 1) window.moveDetailCarousel(detailImgIndex + 1); }
+                else { if (detailImgIndex > 0) window.moveDetailCarousel(detailImgIndex - 1); }
+            }
+        }, { passive: true });
+    }
 
-    window.openDetail = (id, push = true) => {
-        const prod = products.find(p => p.id === id);
-        if(!prod) return window.goToHome();
-        
-        activeProduct = prod;
-        activeVariation = prod.variations[0];
-        selectedColorName = activeVariation.color;
+    window.setColor = function(colorName, el) {
+        selectedColor = colorName;
+        activeVariation = activeProduct.variations.find(v => v.color === colorName);
         selectedSize = null;
-
-        window.closeAllMenus();
-        hideAllViews();
-        document.getElementById('product-detail-view').style.display = 'block';
-        if (push) window.location.hash = 'product-' + id;
-        window.scrollTo(0,0);
-        renderDetailView();
+        document.getElementById('color-container')?.classList.remove('error-shake');
+        el.parentElement.querySelectorAll('.color-circle').forEach(btn => btn.classList.remove('active')); 
+        el.classList.add('active');
+        updateVariationUI();
     };
 
-    window.setColor = (colorName) => {
-        const variation = activeProduct.variations.find(v => v.color === colorName);
-        if(variation) {
-            activeVariation = variation;
-            selectedColorName = colorName;
-            selectedSize = null;
-            renderDetailView();
+    function updateVariationUI() {
+        const track = document.querySelector('.detail-carousel-track');
+        const dots = document.querySelector('.pagination-dots');
+        if(track && activeVariation) {
+            track.innerHTML = activeVariation.images.map(img => `<img src="${img}" onclick="window.zoom('${img}')">`).join('');
+            dots.innerHTML = activeVariation.images.map((_, i) => `<div class="dot ${i===0?'active':''}" onclick="window.moveDetailCarousel(${i})"></div>`).join('');
+            window.moveDetailCarousel(0);
         }
-    };
-
-    window.setSize = (size) => {
-        selectedSize = size;
-        renderDetailView();
-    };
+        const sizeGrid = document.getElementById('size-container');
+        if(sizeGrid && activeVariation) {
+            sizeGrid.innerHTML = activeVariation.sizes.map(s => `<div class="size-btn" onclick="window.setSize('${s}', this)">${s}</div>`).join('');
+        }
+    }
 
     function renderDetailView() {
-        const dv = document.getElementById('product-detail-view');
-        if(!activeProduct || !activeVariation) return;
-
-        dv.innerHTML = `
-            <div class="breadcrumb" onclick="window.showCategory('${activeProduct.category}')">← Voltar</div>
+        activeVariation = activeProduct.variations[0];
+        selectedColor = activeVariation.color;
+        selectedSize = null;
+        const detailView = document.getElementById('product-detail-view');
+        detailView.innerHTML = `
+            <div class="breadcrumb" onclick="window.showCategory('${activeProduct.category}')">← Voltar para ${activeProduct.category}</div>
             <div class="detail-layout">
                 <div class="detail-left">
                     <div class="detail-main-img-container">
                         <div class="detail-carousel-track">
                             ${activeVariation.images.map(img => `<img src="${img}" onclick="window.zoom('${img}')">`).join('')}
                         </div>
+                        <div class="pagination-dots">
+                            ${activeVariation.images.map((_, i) => `<div class="dot ${i===0?'active':''}" onclick="window.moveDetailCarousel(${i})"></div>`).join('')}
+                        </div>
                     </div>
                 </div>
                 <div class="detail-right">
+                    <div style="font-size:0.75rem; color:#aaa; font-weight:700; margin-bottom:12px;">JOY STORE EXCLUSIVE</div>
                     <h2 class="detail-title">${activeProduct.name}</h2>
-                    <div class="detail-price">R$ ${activeProduct.priceNumeric.toFixed(2).replace('.', ',')}</div>
-                    
-                    <span class="option-label">Cor: <strong>${selectedColorName}</strong></span>
-                    <div class="color-grid">
-                        ${activeProduct.variations.map(v => `
-                            <div class="color-circle ${v.color === selectedColorName ? 'active' : ''}" 
-                                 style="background:${v.hex}" 
-                                 onclick="window.setColor('${v.color}')">
-                            </div>
-                        `).join('')}
+                    <div class="detail-price">R$ ${activeProduct.priceNumeric.toFixed(2)}</div>
+                    <span class="option-label">COR:</span>
+                    <div class="color-grid" id="color-container">
+                        ${activeProduct.variations.map(v => `<div class="color-circle ${v.color === selectedColor ? 'active' : ''}" style="background:${v.hex}" onclick="window.setColor('${v.color}', this)"></div>`).join('')}
                     </div>
-
-                    <span class="option-label">Tamanho:</span>
-                    <div class="size-grid">
-                        ${activeVariation.sizes.map(s => `
-                            <div class="size-btn ${selectedSize === s ? 'active' : ''}" 
-                                 onclick="window.setSize('${s}')">${s}</div>
-                        `).join('')}
+                    <span class="option-label">TAMANHO DISPONÍVEL:</span>
+                    <div class="size-grid" id="size-container">
+                        ${activeVariation.sizes.map(s => `<div class="size-btn" onclick="window.setSize('${s}', this)">${s}</div>`).join('')}
                     </div>
-
                     <button class="btn-add-cart-large" onclick="window.addToCart()">ADICIONAR AO CARRINHO</button>
                 </div>
             </div>`;
+        setTimeout(handleSwipe, 100);
     }
 
-    function renderCategoryGrid(f) {
-        const g = document.getElementById('category-grid');
-        g.innerHTML = products.filter(p => p.category === f).map(p => `
+    function renderCategoryGrid(filter) {
+        const grid = document.getElementById('category-grid');
+        grid.innerHTML = products.filter(p => p.category === filter).map(p => `
             <div class="product-card-vitrine" onclick="window.openDetail('${p.id}')">
-                <div class="vitrine-img-box"><img src="${p.variations[0].images[0]}"></div>
-                <div class="vitrine-info">
-                    <div class="vitrine-name">${p.name}</div>
-                    <div class="vitrine-price">R$ ${p.priceNumeric.toFixed(2).replace('.', ',')}</div>
-                </div>
+                <div class="vitrine-img-box"><img src="${p.variations[0].images[0]}" alt="${p.name}"></div>
+                <div class="vitrine-info"><div class="vitrine-name">${p.name}</div><div class="vitrine-price">R$ ${p.priceNumeric.toFixed(2)}</div></div>
             </div>`).join('');
     }
 
-    // --- CARRINHO ---
-    window.addToCart = () => {
-        if (!selectedSize) {
-            showToast("⚠️ Selecione um tamanho!");
+    window.addToCart = function() {
+        let hasError = false;
+        if (!selectedSize) { document.getElementById('size-container')?.classList.add('error-shake'); hasError = true; }
+        if (!selectedColor) { document.getElementById('color-container')?.classList.add('error-shake'); hasError = true; }
+        if (hasError) {
+            showToast("⚠️ Selecione cor e tamanho!");
+            setTimeout(() => { document.getElementById('size-container')?.classList.remove('error-shake'); document.getElementById('color-container')?.classList.remove('error-shake'); }, 1000);
             return;
         }
-
-        const item = {
-            cartId: Date.now(),
-            name: activeProduct.name,
-            price: activeProduct.priceNumeric,
-            size: selectedSize,
-            color: selectedColorName,
-            img: activeVariation.images[0],
-            quantity: 1
-        };
-
-        const existing = cart.find(i => i.name === item.name && i.size === item.size && i.color === item.color);
-        if(existing) existing.quantity++;
-        else cart.push(item);
-
+        const existingItem = cart.find(item => item.productId === activeProduct.id && item.color === selectedColor && item.size === selectedSize);
+        if (existingItem) { existingItem.quantity += 1; } 
+        else {
+            cart.push({
+                cartId: Date.now(),
+                productId: activeProduct.id,
+                name: activeProduct.name,
+                price: activeProduct.priceNumeric,
+                size: selectedSize,
+                color: selectedColor,
+                img: activeVariation.images[0],
+                quantity: 1
+            });
+        }
         if (window.syncCart) window.syncCart(cart);
         window.updateCartUI();
         document.getElementById('confirm-modal').style.display = 'flex';
     };
 
-    window.updateCartUI = () => {
+    window.updateCartUI = function() {
         const container = document.getElementById('cart-items-container');
-        let total = 0;
-        document.getElementById('cart-badge').innerText = cart.reduce((a, b) => a + b.quantity, 0);
-        
-        if(cart.length === 0) {
-            container.innerHTML = `<p style="text-align:center; color:#999; margin-top:50px;">Vazio.</p>`;
-            document.getElementById('cart-total-value').innerText = "R$ 0,00";
-            return;
+        if(!container) return;
+        const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+        document.getElementById('cart-badge').innerText = totalItems;
+        let totalVal = 0;
+        if (cart.length === 0) { 
+            container.innerHTML = `<p style="text-align:center; color:#999; margin-top:50px;">Vazio.</p>`; 
+            document.getElementById('cart-total-value').innerText = "R$ 0,00"; 
+            return; 
         }
-
         container.innerHTML = cart.map(item => {
-            total += (item.price * item.quantity);
+            totalVal += (item.price * item.quantity);
             return `
             <div class="cart-item">
                 <img src="${item.img}">
                 <div style="flex:1">
-                    <div style="font-weight:700; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.5px;">${item.name}</div>
-                    <div style="font-size:0.7rem; color:#888; margin-top:2px;">Tam: ${item.size} | Cor: ${item.color}</div>
-                    <div style="font-weight:900; margin-top:4px; font-size:0.95rem;">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
-                    
-                    <div class="qty-controls-modern">
-                        <button class="qty-btn-modern" onclick="window.changeQty(${item.cartId}, -1)">−</button>
-                        <span class="qty-val-modern">${item.quantity}</span>
-                        <button class="qty-btn-modern" onclick="window.changeQty(${item.cartId}, 1)">+</button>
+                    <div class="cart-item-name">${item.name}</div>
+                    <div style="font-size:0.75rem; color:#888">${item.color} | ${item.size}</div>
+                    <div style="font-weight:900; margin-top:5px;">R$ ${item.price.toFixed(2)}</div>
+                    <div class="qty-controls">
+                        <button class="qty-btn" onclick="window.changeQty(${item.cartId}, -1)">-</button>
+                        <span class="qty-val">${item.quantity}</span>
+                        <button class="qty-btn" onclick="window.changeQty(${item.cartId}, 1)">+</button>
                     </div>
                 </div>
-                <button onclick="window.removeItem(${item.cartId})" style="border:none; color:#ddd; background:none; cursor:pointer; font-size:1.2rem; align-self:flex-start; margin-top:5px;">✕</button>
+                <button onclick="window.removeItem(${item.cartId})" style="color:red; border:none; background:none; cursor:pointer; font-size:1.4rem; padding-left:10px;">✕</button>
             </div>`;
         }).join('');
-        currentTotalPrice = total;
-        document.getElementById('cart-total-value').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        currentTotalPrice = totalVal;
+        document.getElementById('cart-total-value').innerText = `R$ ${totalVal.toFixed(2)}`;
     };
 
-    window.changeQty = (id, delta) => {
-        const i = cart.find(x => x.cartId === id);
-        if(i) {
-            i.quantity += delta;
-            if(i.quantity <= 0) cart = cart.filter(x => x.cartId !== id);
+    window.changeQty = function(id, delta) {
+        const item = cart.find(i => i.cartId === id);
+        if (item) {
+            item.quantity += delta;
+            if (item.quantity <= 0) { cart = cart.filter(i => i.cartId !== id); }
             if (window.syncCart) window.syncCart(cart);
             window.updateCartUI();
         }
     };
 
-    window.removeItem = (id) => {
-        cart = cart.filter(x => x.cartId !== id);
-        if (window.syncCart) window.syncCart(cart);
-        window.updateCartUI();
-    };
+    window.removeItem = function(id) { cart = cart.filter(i => i.cartId !== id); if (window.syncCart) window.syncCart(cart); window.updateCartUI(); if (cart.length === 0) window.closeAllMenus(); };
 
-    // --- FINALIZAR VIA WHATSAPP ---
-    window.checkoutWhatsApp = () => {
+    window.checkoutWhatsApp = function() {
         if (cart.length === 0) return;
         const phone = "91985866932";
         const siteLink = "https://joystore-official.com"; 
-        
+
         let msg = `🛒 *NOVO PEDIDO - JOY STORE OFFICIAL*\n`;
         msg += `🔗 Site: ${siteLink}\n\n`;
         msg += `--- ITENS DO PEDIDO ---\n\n`;
-        
+
         cart.forEach((item, i) => {
             msg += `${i+1}. *${item.name}* (Qtd: ${item.quantity})\n`;
             msg += `📏 Tam: ${item.size} | 🎨 Cor: ${item.color}\n`;
             msg += `💰 R$ ${item.price.toFixed(2).replace('.', ',')} cada\n`;
             msg += `📷 Foto: ${item.img}\n\n`;
         });
-        
+
         msg += `--------------------------\n`;
         msg += `*TOTAL DO PEDIDO: R$ ${currentTotalPrice.toFixed(2).replace('.', ',')}*`;
 
         window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-        
-        cart = []; 
-        if (window.syncCart) window.syncCart(cart); 
-        window.updateCartUI(); 
-        window.closeAllMenus();
+        cart = []; if (window.syncCart) window.syncCart(cart); window.updateCartUI(); window.closeAllMenus();
     };
 
-    // --- FUNÇÕES DE INTERFACE (HAMBURGUER CORRIGIDO) ---
-    window.openSidebar = () => { 
-        document.getElementById('sidebar').classList.add('open'); 
-        document.querySelector('.overlay').classList.add('active'); 
-    };
-
-    window.toggleCart = () => { 
-        document.getElementById('cart-drawer').classList.toggle('open'); 
-        document.querySelector('.overlay').classList.toggle('active'); 
-    };
-
-    window.closeAllMenus = () => {
-        document.getElementById('sidebar').classList.remove('open');
-        document.getElementById('cart-drawer').classList.remove('open');
-        document.querySelector('.overlay').classList.remove('active');
-        document.getElementById('confirm-modal').style.display = 'none';
-    };
-
-    // --- AUXILIARES ---
-    function hideAllViews() { 
-        document.getElementById('home-view').style.display = 'none'; 
-        document.getElementById('category-view').style.display = 'none'; 
-        document.getElementById('product-detail-view').style.display = 'none'; 
-    }
-    function updateNavLinks(id) { 
-        document.querySelectorAll('.nav-link-item').forEach(l => l.classList.remove('active'));
-        document.getElementById('link-'+id)?.classList.add('active');
-    }
-    window.closeConfirmModal = () => document.getElementById('confirm-modal').style.display = 'none';
-    window.confirmGoToCart = () => { window.closeConfirmModal(); window.toggleCart(); };
-    window.zoom = (src) => { document.getElementById('full-image').src = src; document.getElementById('image-viewer').style.display = 'flex'; };
-    
-    function showToast(m) {
+    function showToast(msg) {
         const t = document.getElementById('toast');
-        t.innerText = m; t.classList.add('visible');
-        clearTimeout(toastTimeout);
-        toastTimeout = setTimeout(() => t.classList.remove('visible'), 3000);
+        t.innerText = msg; t.classList.add('visible');
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => t.classList.remove('visible'), 4000);
     }
 
-    // Carrossel Home
-    let slideIdx = 0;
+    function checkCurrentView() {
+        const hash = window.location.hash;
+        if (!hash || hash === '' || hash === '#home') window.goToHome(false);
+        else if (hash.startsWith('#category-')) window.showCategory(hash.replace('#category-', ''), false);
+        else if (hash.startsWith('#product-')) window.openDetail(hash.replace('#product-', ''), false);
+    }
+
+    let currentSlide = 0;
     setInterval(() => {
         const track = document.getElementById('mainCarousel');
-        if(track && document.getElementById('home-view').style.display !== 'none') {
-            slideIdx = (slideIdx + 1) % 3;
-            track.style.transform = `translateX(-${slideIdx * 100}%)`;
-        }
-    }, 4000);
+        if (!track || document.getElementById('home-view').style.display === 'none') return;
+        currentSlide = (currentSlide + 1) % 3;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }, 5000);
 
-    window.onload = () => { window.goToHome(false); };
+    window.onhashchange = checkCurrentView;
+    window.onload = checkCurrentView;
 </script>
 
-<!-- FIREBASE SYNC -->
+<!-- FIREBASE SDK -->
 <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
     import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
@@ -675,17 +697,13 @@
         if (user) {
             const cartRef = doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'cart');
             onSnapshot(cartRef, (snap) => {
-                if (snap.exists() && snap.data().items && cart.length === 0) {
-                    cart = snap.data().items;
-                    window.updateCartUI();
+                if (snap.exists() && snap.data().items && window.cart && window.cart.length === 0) {
+                    window.cart = snap.data().items;
+                    if (typeof window.updateCartUI === 'function') window.updateCartUI();
                 }
             });
-            window.syncCart = async (items) => {
-                await setDoc(cartRef, { items: items });
-            };
-        } else {
-            await signInAnonymously(auth);
-        }
+            window.syncCart = async (items) => { await setDoc(cartRef, { items: items }); };
+        } else { await signInAnonymously(auth); }
     });
 </script>
 
